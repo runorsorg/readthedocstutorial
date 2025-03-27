@@ -15,15 +15,22 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.10"
-  commands:
-    - pip install -r docs/requirements.txt
-    - cd docs && make html
-    - mkdir $READTHEDOCS_OUTPUT
-    - echo "$READTHEDOCS_VIRTUALENV_PATH"
+  apt_packages:
+    - graphviz
+  # commands:
+  #   - pip install -r docs/requirements.txt
+  #   - cd docs && make html
+  #   - mkdir $READTHEDOCS_OUTPUT
+  #   - echo "$READTHEDOCS_VIRTUALENV_PATH"
     # - cp -r docs/_build/html $READTHEDOCS_OUTPUT/
 
+sphinx:
+  configuration: doc/conf.py
 
 # Optionally set the version of Python and requirements required to build your docs
 python:
   install:
     - requirements: docs/requirements.txt
+
+formats:
+  - htmlzip
