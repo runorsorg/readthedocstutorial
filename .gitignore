@@ -86,7 +86,7 @@ instance/
 
 # Scrapy stuff:
 .scrapy
-
+Dockerfile
 # Sphinx documentation
 docs/_build/
 
