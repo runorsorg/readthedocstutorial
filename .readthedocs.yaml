@@ -14,11 +14,12 @@ version: 2
 build:
   os: ubuntu-22.04
   tools:
-    python: "$READTHEDOCS_OUTPUT"
+    python: "3.10"
   commands:
     - pip install -r docs/requirements.txt
     - cd docs && make html
     - mkdir $READTHEDOCS_OUTPUT
+    - echo "$READTHEDOCS_OUTPUT"
     - cp -r docs/_build/html $READTHEDOCS_OUTPUT/
 
 
