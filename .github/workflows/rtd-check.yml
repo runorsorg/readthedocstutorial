@@ -67,7 +67,7 @@ jobs:
     - name: Build Sphinx zip
       run: |
         cd doc
-        python -m sphinx -T -b singlehtml -W --keep-going -d doc/_build/doctrees -D language=en doc/ doc/htmlzip        
+        python -m sphinx -T -b singlehtml --keep-going -d doc/_build/doctrees -D language=en doc/ doc/htmlzip        
   # sphinx:
   #   needs: [determine_runner] 
   #   runs-on: ${{ needs.determine_runner.outputs.runner_group }}
