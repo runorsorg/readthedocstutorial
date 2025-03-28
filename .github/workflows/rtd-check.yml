@@ -50,8 +50,10 @@ jobs:
     #     which python
     #     which pip    
     
-    # - name: Install dependencies
-    #   run: |
+    - name: Install dependencies
+      run: |
+        pip install .
+   
     #     python -m pip install --upgrade pip wheel setuptools>=75.8.1
     #     python -m pip install --exists-action=w --no-cache-dir -r doc/requirements.txt 
     # - name: asdf
@@ -59,6 +61,7 @@ jobs:
     #   with:
     #     tool: python
     #     args: "3.10.15"
+    
     - name: Build Sphinx
       run: |
         cd doc
