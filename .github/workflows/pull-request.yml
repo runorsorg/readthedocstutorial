@@ -1,10 +1,10 @@
 name: Validate pull request before putting into queue
 
 on:
-  pull_request:
+  pull_request: {}
   merge_group:
-  types:
-    - checks_requested 
+    types:
+      - checks_requested 
 
 jobs:
   validate-pr:
