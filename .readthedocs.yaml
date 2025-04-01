@@ -19,8 +19,10 @@ build:
   jobs:
     pre_build:
       - pwd
-    post_checkout:
-      - echo $READTHEDOCS_OUTPUT
-      - pwd
+      - echo "Pre-build step"
+    # post_checkout:
+    #   - echo $READTHEDOCS_OUTPUT
+    #   - pwd
     post_build:
       - pwd
+      - echo "Post-build step"
