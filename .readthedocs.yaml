@@ -11,3 +11,8 @@ python:
 
 sphinx:
   configuration: doc/conf.py
+
+build:
+  jobs:
+    post_build:
+      - echo $READTHEDOCS_OUTPUT
