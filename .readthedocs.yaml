@@ -17,6 +17,8 @@ build:
   tools:
     python: "3.10"
   jobs:
+    pre_build:
+      - pwd
     post_checkout:
       - echo $READTHEDOCS_OUTPUT
       - pwd
