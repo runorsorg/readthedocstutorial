@@ -42,11 +42,11 @@ jobs:
     #     # Adding venv name as an output for subsequent steps to reference if needed
     #     echo "venv_name=${{ env.VENV_NAME }}" >> $GITHUB_OUTPUT
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade --no-cache-dir pip setuptools 
-        pip install --upgrade --no-cache-dir sphinx graphviz
-        pip install --exists-action=w --no-cache-dir -r doc/requirements.txt         
+    # - name: Install dependencies
+    #   run: |
+    #     python -m pip install --upgrade --no-cache-dir pip setuptools 
+    #     pip install --upgrade --no-cache-dir sphinx graphviz
+    #     pip install --exists-action=w --no-cache-dir -r doc/requirements.txt         
 
     # - name: Display Python-Path
     #   run: |
@@ -67,7 +67,7 @@ jobs:
     
     - name: Build Sphinx
       run: |
-        echo $HOME
+        pwd
         python -m sphinx -T -b html -d ./_build/doctrees -D language=en . ./html --keep-going   
 
     # - name: Build Sphinx zip
