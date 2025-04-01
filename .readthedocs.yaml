@@ -13,6 +13,8 @@ sphinx:
   configuration: doc/conf.py
 
 build:
+  os: "ubuntu-20.04"
   jobs:
     post_build:
       - echo $READTHEDOCS_OUTPUT
+      - pwd
