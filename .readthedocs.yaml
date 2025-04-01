@@ -22,3 +22,5 @@ build:
     post_checkout:
       - echo $READTHEDOCS_OUTPUT
       - pwd
+    post_build:
+      - pwd
