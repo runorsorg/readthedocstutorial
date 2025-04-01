@@ -16,6 +16,7 @@ build:
   os: "ubuntu-22.04"
   tools:
     python: "3.10"
-  commands:
-    - echo $READTHEDOCS_OUTPUT
-    - pwd
+  jobs:
+    post_checkout:
+      - echo $READTHEDOCS_OUTPUT
+      - pwd
