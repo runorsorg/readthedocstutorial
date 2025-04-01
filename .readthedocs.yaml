@@ -18,11 +18,11 @@ build:
     python: "3.10"
   jobs:
     pre_build:
-      - pwd
+      - ls -la
       - echo "Pre-build step"
     # post_checkout:
     #   - echo $READTHEDOCS_OUTPUT
     #   - pwd
     post_build:
-      - pwd
+      - ls -la
       - echo "Post-build step"
