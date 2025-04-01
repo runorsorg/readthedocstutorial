@@ -68,6 +68,8 @@ jobs:
     - name: Build Sphinx
       run: |
         pwd
+        ls ../
+        ls .
         python -m sphinx -T -b html -d ./_build/doctrees -D language=en . ./html --keep-going   
 
     # - name: Build Sphinx zip
