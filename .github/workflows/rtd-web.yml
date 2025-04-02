@@ -17,7 +17,8 @@ jobs:
         fetch-depth: 1
     - name: Check status
       run: |
-        COMMIT_HASH=${{ github.head_ref }}
+        echo "$GITHUB_CONTEXT"
+        COMMIT_HASH=${{ github.sha }}
         RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
         SUCCESS=$(echo "$RESPONSE" | jq -r --arg COMMIT "$COMMIT_HASH" '.results[] | select(.commit == $COMMIT) | .success')
 
