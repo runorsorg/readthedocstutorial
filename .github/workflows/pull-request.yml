@@ -1,4 +1,4 @@
-name: Validate pull request before putting into queue
+name: Validate pull request before putting into queue 
 
 on:
   pull_request: {}
