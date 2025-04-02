@@ -22,6 +22,7 @@ jobs:
         while [[ "$SUCCESS" != "true" && "$SUCCESS" != "false" ]]; do
           echo "Checking build status for commit $COMMIT_HASH..."
           RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
+          echo "$RESPONSE"
           SUCCESS=$(echo "$RESPONSE" | jq -r --arg COMMIT "$COMMIT_HASH" '.results[] | select(.commit == $COMMIT) | .success')
           sleep 30
         done
