@@ -19,7 +19,7 @@ jobs:
       run: |
         sleep 120
         COMMIT_HASH=${{ github.workflow_sha }}
-        while "$SUCCESS"==null; do
+        while [[ "$SUCCESS" != "true" && "$SUCCESS" != "false" ]]; do
           sleep 120
           echo "Checking build status for commit $COMMIT_HASH..."
           RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
