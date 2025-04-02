@@ -1,0 +1,29 @@
+name: "RTD check"
+on:
+  merge_group:
+    types:
+      - checks_requested
+  pull_request: {}
+
+jobs:
+  rtd:
+    runs-on: ubuntu-22.04
+    env:
+      PYTHON_VERSION: "3.10"
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    - name: Check status
+      run: |
+        COMMIT_HASH=$(git rev-parse HEAD)
+        RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
+        SUCCESS=$(echo "$RESPONSE" | jq -r --arg COMMIT "$COMMIT_HASH" '.results[] | select(.commit == $COMMIT) | .success')
+
+        if [ "$SUCCESS" == "true" ]; then
+          echo "Build for commit $COMMIT_HASH was successful."
+        else
+          echo "Build for commit $COMMIT_HASH failed or not found."
+          exit 1
+        fi
