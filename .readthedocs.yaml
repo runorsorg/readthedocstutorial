@@ -7,7 +7,22 @@ build:
 
 python:
   install:
-    - requirements: docs/requirements.txt
+    - requirements: doc/requirements.txt
 
 sphinx:
-  configuration: docs/source/conf.py
+  configuration: doc/conf.py
+
+build:
+  os: "ubuntu-22.04"
+  tools:
+    python: "3.10"
+  jobs:
+    pre_build:
+      - ls -la
+      - echo "Pre-build step"
+    # post_checkout:
+    #   - echo $READTHEDOCS_OUTPUT
+    #   - pwd
+    post_build:
+      - ls -la
+      - echo "Post-build step"
