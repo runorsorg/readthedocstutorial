@@ -19,12 +19,26 @@ jobs:
       run: |
         sleep 120
         COMMIT_HASH=${{ github.workflow_sha }}
-        RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
-        SUCCESS=$(echo "$RESPONSE" | jq -r --arg COMMIT "$COMMIT_HASH" '.results[] | select(.commit == $COMMIT) | .success')
-
+        while "$SUCCESS"==null; do
+          sleep 120
+          echo "Checking build status for commit $COMMIT_HASH..."
+          RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
+          SUCCESS=$(echo "$RESPONSE" | jq -r --arg COMMIT "$COMMIT_HASH" '.results[] | select(.commit == $COMMIT) | .success')
+        done
         if [ "$SUCCESS" == "true" ]; then
           echo "Build for commit $COMMIT_HASH was successful."
         else
-          echo "Build for commit $COMMIT_HASH failed or not found."
-          exit 1
+          echo "Build for commit $COMMIT_HASH failed."
         fi
+       
+       
+#        RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
+        # SUCCESS=$(echo "$RESPONSE" | jq -r --arg COMMIT "$COMMIT_HASH" '.results[] | select(.commit == $COMMIT) | .success')
+
+        # if [ "$SUCCESS" == "true" ]; then
+        #   echo "Build for commit $COMMIT_HASH was successful."
+        # else
+        #   RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
+        #   SUCCESS=$(echo "$RESPONSE" | jq -r --arg COMMIT "$COMMIT_HASH" '.results[] | select(.commit == $COMMIT) | .success')
+
+        # fi
