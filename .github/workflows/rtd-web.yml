@@ -20,10 +20,10 @@ jobs:
         sleep 120
         COMMIT_HASH=${{ github.workflow_sha }}
         while [[ "$SUCCESS" != "true" && "$SUCCESS" != "false" ]]; do
-          sleep 120
           echo "Checking build status for commit $COMMIT_HASH..."
           RESPONSE=$(curl -s "https://readthedocs.org/api/v3/projects/runora95-readthedocstutorial/builds")
           SUCCESS=$(echo "$RESPONSE" | jq -r --arg COMMIT "$COMMIT_HASH" '.results[] | select(.commit == $COMMIT) | .success')
+          sleep 30
         done
         if [ "$SUCCESS" == "true" ]; then
           echo "Build for commit $COMMIT_HASH was successful."
